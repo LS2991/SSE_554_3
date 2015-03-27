@@ -7,6 +7,7 @@ import javax.swing.AbstractAction;
 public class MovementAction extends AbstractAction {
 	
 	private String cmd;
+	private boolean upFlag = false, downFlag = false, shootFlag = false;
 	
 	public MovementAction(String cmd) {
 		this.cmd = cmd;
