@@ -41,6 +41,7 @@ public class EnvironmentFrame extends JFrame {
 		addButton(buttonPanel, "Start", new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addPlayer();
+				addObjects();
 			}
 		});
 		
@@ -62,6 +63,15 @@ public class EnvironmentFrame extends JFrame {
 		Runnable r = new PlayerRunnable(comp, player);
 		Thread t = new Thread(r);
 		t.start();
+	}
+	
+	public void addObjects() {
+		for(int i = 0; i < 5; i++)
+		{
+			Runnable r = new ObjectRunnable(comp);
+			Thread t = new Thread(r);
+			t.start();
+		}
 	}
 	
 	public void addProjectile() {

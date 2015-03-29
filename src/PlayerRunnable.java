@@ -8,7 +8,6 @@ public class PlayerRunnable implements Runnable{
 		this.comp = comp;
 	}
 
-	@Override
 	public void run() {
 		comp.addPlayer(player);
 		comp.paint(comp.getGraphics());

@@ -14,8 +14,9 @@ public class GameComponent extends JPanel{
 	private ArrayList<Player> players = new ArrayList();
 	private Player player;
 	private Projectile projectile;
-	
 	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+	private Object object;
+	private ArrayList<Object> objects = new ArrayList<Object>();
 	
 	public void addPlayer(Player p) {
 		player = p;
@@ -29,6 +30,16 @@ public class GameComponent extends JPanel{
 		projectiles.add(projectile);
 	}
 	
+	public void addObject()
+	{
+		objects.add(new Object(getBounds()));
+	}
+	
+	public void addObject(Object object)
+	{
+		objects.add(object);
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
@@ -38,6 +49,10 @@ public class GameComponent extends JPanel{
 		if(player != null)
 			player.paintPlayer(g2);
 		
+		if(!objects.isEmpty())
+			for(Object objects : objects)
+				objects.paintObject(g2);
+				
 		if(!projectiles.isEmpty()) { 
 			for(Projectile projectile : projectiles)
 				projectile.paintProjectile(g2);
@@ -62,5 +77,10 @@ public class GameComponent extends JPanel{
 	
 	public ArrayList<Projectile> getProjectiles() {
 		return projectiles;
+	}
+	
+	public ArrayList<Object> getObjects() 
+	{
+		return objects;
 	}
 }

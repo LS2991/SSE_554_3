@@ -17,7 +17,6 @@ public class ProjectileRunnable implements Runnable {
 		this.comp = comp;
 	}
 
-	@Override
 	public void run() {
 		
 //		Thread t = new Thread(new Runnable() {

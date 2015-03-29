@@ -13,7 +13,6 @@ public class MovementAction extends AbstractAction {
 		this.cmd = cmd;
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		GameComponent comp = (GameComponent) e.getSource();
 				
