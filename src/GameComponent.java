@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -16,8 +18,9 @@ public class GameComponent extends JPanel{
 	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	private Object object;
 	private ArrayList<Object> objects = new ArrayList<Object>();
+	private Menu menu = new Menu();
+	private boolean showScore = false;
 
-	
 	public void addPlayer(Player p) {
 		player = p;
 	}
@@ -53,6 +56,17 @@ public class GameComponent extends JPanel{
 			for(Projectile projectile : projectiles)
 				projectile.paintProjectile(g2);
 		}
+		
+		if (menu != null) {
+			menu.paintMenu(g2);
+		
+			if (showScore) {
+				Font f = new Font("Calibri", Font.BOLD, 16);
+				g2.setFont(f);
+				g2.setColor(Color.BLACK);
+				g2.drawString("Score : " + Integer.toString(player.getScore()), 20, 502);
+			}
+		}
 	}
 	
 	public Dimension getPreferedSize() {
@@ -78,5 +92,23 @@ public class GameComponent extends JPanel{
 	public ArrayList<Object> getObjects() 
 	{
 		return objects;
+	}
+	/////////////////////////////////////////
+	public void startDrawingMenu() {
+		menu.startDrawing();
+	}
+	
+	public void stopDrawingMenu() {
+		menu.stopDrawing();
+	}
+	
+	public Menu getMenu() {
+		return menu;
+	}
+	public void addMenu(Menu m) {
+		menu = m;
+	}
+	public void toggleScore() {
+		showScore = !showScore;
 	}
 }

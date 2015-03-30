@@ -17,6 +17,7 @@ public class MovementAction extends AbstractAction {
 		GameComponent comp = (GameComponent) e.getSource();
 				
 		Player p = comp.getPlayer();
+		Menu m = comp.getMenu();
 		Projectile projectile;
 		
 		if(cmd.equalsIgnoreCase("W") && p != null) {
@@ -68,7 +69,38 @@ public class MovementAction extends AbstractAction {
 				
 //			}
 		}
-			
+		else if(cmd.equalsIgnoreCase("M") && m != null) {
+			Runnable r = new MenuRunnable(comp, m);
+			Thread t = new Thread(r);
+			t.start();
+		}
+		else if(cmd.equalsIgnoreCase("Enter") && m != null) {
+			if (m.isDrawing()) {
+				int sel = m.getSelected();
+				System.out.println(sel);
+				switch (sel) {
+					case 0:	comp.toggleScore(); break;
+					case 1: break;
+					case 2: break;
+					case 3: System.exit(0); break;
+					default: break;
+				}
+				m.stopDrawing();
+				comp.repaint(0,0,600,600);
+			}
+		}
+		else if(cmd.equalsIgnoreCase("Up") && m != null) {
+			if (m.isDrawing()) {
+				m.decrementSelection();
+				comp.repaint(150,0,400,600);
+			}
+		}
+		else if(cmd.equalsIgnoreCase("Down") && m != null) {
+			if (m.isDrawing()) {
+				m.incrementSelection();
+				comp.repaint(150,0,400,600);
+			}
+		}
 	}
 
 }

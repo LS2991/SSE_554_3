@@ -38,8 +38,11 @@ public class ObjectRunnable implements Runnable {
 					for(int i = 0; i < comp.getProjectiles().size(); i++)
 						if(object.intersects(comp.getProjectiles().get(i).getShape()))
 							collision = true;
-					if(collision)
+					if(collision) 
+					{
+						comp.getPlayer().incrementScore();
 						break;
+					}
 					comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
 					comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
 					//comp.repaint();

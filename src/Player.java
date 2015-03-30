@@ -7,7 +7,7 @@ import java.awt.geom.Ellipse2D.Double;
 public class Player {
 	
 	private double xPos, yPos;
-	private int dX = 1, dY = 1;
+	private int dX = 1, dY = 1, score = 0;
 	private static final int xSize = 15, ySize = 15;
 	
 	public Player(Rectangle2D environment) {
@@ -56,5 +56,13 @@ public class Player {
 	
 	public int getYSize() {
 		return ySize;
+	}
+	///////////////////////////////////////////////////////////
+	public int getScore() {
+		return score;
+	}
+	
+	public void incrementScore() {
+		score ++;
 	}
 }
