@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 public class Projectile {
 
 	private double xPos, yPos;
+	private Player player;
 	private int dX = 1;
 	private static final int xSize = 5, ySize = 2;
 	
@@ -13,6 +14,7 @@ public class Projectile {
 		
 		xPos = p.getXPos() + 20;
 		yPos = p.getYPos() + (p.getYSize() / 2);
+		player = p;
 		
 	}
 	
