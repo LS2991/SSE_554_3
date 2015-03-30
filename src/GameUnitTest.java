@@ -75,5 +75,28 @@ public class GameUnitTest {
 		ArrayList<Projectile> projectiles = ((ProjectileRunnable) r2).getProjectiles();
 		assertTrue(projectiles != null);
 	}
+	
+	@Test public void movmentTest() {
+		JFrame frame = new EnvironmentFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setFocusable(true);
+		frame.setVisible(true);
+		
+		GameComponent comp = ((EnvironmentFrame) frame).getGameComponent();
+		
+		Player player = new Player(comp.getBounds());
+		
+		//double prevX = player.getXPos();
+		double prevY = player.getYPos();
+		
+		player.moveDown(comp.getBounds());
+		
+		assertTrue(player.getYPos() > prevY);
+		
+		player.moveUp(comp.getBounds());
+		player.moveUp(comp.getBounds());
+		
+		assertTrue(player.getYPos() < prevY);
+	}
 
 }
