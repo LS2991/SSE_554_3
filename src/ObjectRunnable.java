@@ -44,9 +44,9 @@ public class ObjectRunnable implements Runnable {
 						}
 					if(collision)
 						break;
-					comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
-					comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
-					//comp.repaint();
+					//comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
+					//comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
+					comp.repaint();
 					//comp.paint(comp.getGraphics());
 					Thread.sleep(10);
 					
