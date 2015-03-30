@@ -54,7 +54,6 @@ public class EnvironmentFrame extends JFrame {
 				if (!started) {
 					addPlayer();
 					addObjects();
-					addMenu();
 					started = true;
 				}
 			}
@@ -87,12 +86,6 @@ public class EnvironmentFrame extends JFrame {
 			Thread t = new Thread(r);
 			t.start();
 		}
-	}
-	
-	public void addMenu() {
-		Runnable r = new MenuRunnable(comp, comp.getMenu());
-		Thread t = new Thread(r);
-		t.start();
 	}
 	
 	public void addProjectile() {
