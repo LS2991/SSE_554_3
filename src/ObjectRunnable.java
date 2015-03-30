@@ -41,19 +41,15 @@ public class ObjectRunnable implements Runnable {
 						{
 							comp.getProjectiles().remove(i);
 							collision = true;
-<<<<<<< HEAD
-					if(collision) 
-					{
-						comp.getPlayer().incrementScore();
-=======
 						}
 					if(collision)
->>>>>>> origin/master
+					{
+						comp.getPlayer().incrementScore();
 						break;
 					}
-					comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
-					comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
-					//comp.repaint();
+					//comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
+					//comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
+					comp.repaint();
 					//comp.paint(comp.getGraphics());
 					Thread.sleep(10);
 					
@@ -63,7 +59,7 @@ public class ObjectRunnable implements Runnable {
 				}
 			
 			}
-			comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
+			comp.repaint();
 			object.reset(comp.getBounds());
 			collision = false;
 		}
