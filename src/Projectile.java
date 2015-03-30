@@ -1,8 +1,6 @@
-import java.awt.Graphics;
+import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 
 
 public class Projectile {
@@ -32,6 +30,7 @@ public class Projectile {
 	}
 	
 	public void paintProjectile(Graphics2D g2) {
+		g2.setColor(Color.BLACK);
 		g2.fill(new Rectangle2D.Double(xPos, yPos, xSize, ySize));
 	}
 	

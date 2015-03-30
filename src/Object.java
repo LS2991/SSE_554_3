@@ -7,30 +7,85 @@ import java.awt.geom.Rectangle2D;
 public class Object {
 	
 	private double xPos, yPos;
-	boolean left;
+	boolean left,up;
 	private int dX = 1, dY = 1;
 	private static final int xSize = 15, ySize = 15;
+	private int side;
 	
 	public Object(Rectangle2D environment) {
+		side = (int) (Math.random()*3);
+		if(side == 0)
+		{
+			xPos = Math.random()*environment.getMaxX()+20;
+			if(xPos > (environment.getMaxX()/2))
+			    left = true;
+			else
+				left = false;
+			yPos = environment.getMinY()+20;
+		}
 		
-		xPos = Math.random()*environment.getMaxX()+20;
-		if(xPos > (environment.getMaxX()/2))
-		    left = true;
+		else if(side == 1)
+		{
+			xPos = environment.getMaxX()-20;
+			yPos = Math.random()*environment.getMaxY();
+			if(yPos > (environment.getMaxX()/2))
+			    up = true;
+			else
+				up = false;
+		}
+		
 		else
-			left = false;
-		yPos = environment.getMinY();
+		{
+			xPos = Math.random()*environment.getMaxX()+20;
+			yPos = environment.getMaxY()-20;
+			if(xPos > (environment.getMaxX()/2))
+				left = true;
+			else
+				left = false;
+		}	
 	}
 	
 	public void move(Rectangle2D environment) {	
-		if(left == true)
+		if(side == 0)
 		{
-			xPos = xPos-dX;
-			yPos = yPos+dY;
+			if(left == true)
+			{
+				xPos = xPos-dX;
+				yPos = yPos+dY;
+			}
+			else
+			{
+				xPos = xPos+dX;
+				yPos = yPos+dY;
+			}
 		}
+		
+		else if(side == 1)
+		{
+			if(up == true)
+			{
+				xPos = xPos-dX;
+				yPos = yPos-dY;
+			}
+			else
+			{
+				xPos = xPos-dX;
+				yPos = yPos+dY;
+			}
+		}
+		
 		else
 		{
-			xPos = xPos+dX;
-			yPos = yPos+dY;
+			if(left == true)
+			{
+				xPos = xPos-dX;
+				yPos = yPos-dY;
+			}
+			else
+			{
+				xPos = xPos+dX;
+				yPos = yPos-dY;
+			}
 		}
 	}
 	
@@ -41,6 +96,7 @@ public class Object {
 	public void paintObject(Graphics2D g2) {
 		g2.setColor(Color.RED);
 		g2.fill(new Ellipse2D.Double(xPos, yPos, xSize, ySize));
+		
 	}
 	
 	public double getXPos() {
@@ -60,12 +116,36 @@ public class Object {
 	}
 
 	public void reset(Rectangle2D environment) {
-		xPos = Math.random()*environment.getMaxX()+20;
-		if(xPos > environment.getMaxX()/2)
-		    left = true;
+		side = (int) (Math.random()*3);
+		if(side == 0)
+		{
+			xPos = Math.random()*environment.getMaxX()+20;
+			if(xPos > (environment.getMaxX()/2))
+			    left = true;
+			else
+				left = false;
+			yPos = environment.getMinY()+20;
+		}
+		
+		else if(side == 1)
+		{
+			xPos = environment.getMaxX()-20;
+			yPos = Math.random()*environment.getMaxY();
+			if(yPos > (environment.getMaxX()/2))
+			    up = true;
+			else
+				up = false;
+		}
+		
 		else
-			left = false;
-		yPos = environment.getMinY();		
+		{
+			xPos = Math.random()*environment.getMaxX()+20;
+			yPos = environment.getMaxY()-20;
+			if(xPos > (environment.getMaxX()/2))
+				left = true;
+			else
+				left = false;
+		}	
 	}
 
 	public boolean intersects(Rectangle2D obj) {

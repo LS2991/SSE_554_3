@@ -28,7 +28,8 @@ public class ObjectRunnable implements Runnable {
 		{
 			while((object.getXPos() + object.getXSize() < comp.getBounds().getMaxX()) 
 					&& (object.getXPos() - object.getXSize() > comp.getBounds().getMinX())
-					&& (object.getYPos() + object.getYSize() < comp.getBounds().getMaxY())) 
+					&& (object.getYPos() + object.getYSize() < comp.getBounds().getMaxY())
+					&& (object.getYPos() - object.getYSize() > comp.getBounds().getMinY())) 
 			{
 				try {
 					int prevX = (int) object.getXPos();
@@ -37,7 +38,10 @@ public class ObjectRunnable implements Runnable {
 					object.move(comp.getBounds());
 					for(int i = 0; i < comp.getProjectiles().size(); i++)
 						if(object.intersects(comp.getProjectiles().get(i).getShape()))
+						{
+							comp.getProjectiles().remove(i);
 							collision = true;
+						}
 					if(collision)
 						break;
 					comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
