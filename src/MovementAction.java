@@ -77,7 +77,6 @@ public class MovementAction extends AbstractAction {
 		else if(cmd.equalsIgnoreCase("Enter") && m != null) {
 			if (m.isDrawing()) {
 				int sel = m.getSelected();
-				System.out.println(sel);
 				switch (sel) {
 					case 0:	comp.toggleScore(); break;
 					case 1: break;

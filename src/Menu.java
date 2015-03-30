@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public class Menu {
-	private int xPos, yPos, width, height, selected, maxOptions, score;
+	private int xPos, yPos, width, height, selected, maxOptions;
 	private ArrayList<String> menuList = new ArrayList<String>();
 	private boolean drawing = false;
 	
