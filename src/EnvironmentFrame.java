@@ -100,7 +100,7 @@ public class EnvironmentFrame extends JFrame {
 		comp.paint(comp.getGraphics());
 	}
 	
-	public GameComponent getComponent() {
+	public GameComponent getGameComponent() {
 		return comp;
 	}
 
