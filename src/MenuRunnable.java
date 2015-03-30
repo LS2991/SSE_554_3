@@ -15,4 +15,8 @@ public class MenuRunnable implements Runnable {
 		menu.startDrawing();
 		comp.paint(comp.getGraphics());
 	}
+	
+	public Menu getMenu() {
+		return menu;
+	}
 }

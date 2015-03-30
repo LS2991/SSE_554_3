@@ -28,7 +28,6 @@ public class EnvironmentFrame extends JFrame {
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0), "W");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "S");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "Space");
-		/////////////////////////////////////////////////
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "Up");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "Down");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_M, 0), "M");
@@ -37,7 +36,6 @@ public class EnvironmentFrame extends JFrame {
 		am.put("W", new MovementAction("W"));
 		am.put("S", new MovementAction("S"));
 		am.put("Space", new MovementAction("Space"));
-		////////////////////////////////////////////////
 		am.put("Up", new MovementAction("Up"));
 		am.put("Down", new MovementAction("Down"));
 		am.put("M", new MovementAction("M"));

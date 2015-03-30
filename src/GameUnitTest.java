@@ -76,7 +76,8 @@ public class GameUnitTest {
 		assertTrue(projectiles != null);
 	}
 	
-	@Test public void movmentTest() {
+	@Test 
+	public void movmentTest() {
 		JFrame frame = new EnvironmentFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setFocusable(true);
@@ -97,6 +98,24 @@ public class GameUnitTest {
 		player.moveUp(comp.getBounds());
 		
 		assertTrue(player.getYPos() < prevY);
+	}
+	
+	@Test
+	public void addMenu() {
+		JFrame frame = new EnvironmentFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setFocusable(true);
+		frame.setVisible(true);
+		
+		GameComponent comp = ((EnvironmentFrame) frame).getGameComponent();
+		Menu m = new Menu();
+		
+		Runnable r = new MenuRunnable(comp, m);
+		Thread t = new Thread(r);
+		t.start();
+		
+		m = ((MenuRunnable) r).getMenu();
+		assertTrue(m != null);
 	}
 
 }
