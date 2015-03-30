@@ -2,21 +2,22 @@ import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Ellipse2D.Double;
 
 
 public class Object {
 	
 	private double xPos, yPos;
-	boolean left = false;
+	boolean left;
 	private int dX = 1, dY = 1;
 	private static final int xSize = 15, ySize = 15;
 	
 	public Object(Rectangle2D environment) {
 		
-		xPos = + Math.random()*environment.getMaxX()+20;
-		if(xPos > environment.getMaxX()/2);
+		xPos = Math.random()*environment.getMaxX()+20;
+		if(xPos > (environment.getMaxX()/2))
 		    left = true;
+		else
+			left = false;
 		yPos = environment.getMinY();
 	}
 	
@@ -59,9 +60,17 @@ public class Object {
 	}
 
 	public void reset(Rectangle2D environment) {
-		xPos = + Math.random()*environment.getMaxX()+20;
-		if(xPos > environment.getMaxX()/2);
+		xPos = Math.random()*environment.getMaxX()+20;
+		if(xPos > environment.getMaxX()/2)
 		    left = true;
+		else
+			left = false;
 		yPos = environment.getMinY();		
+	}
+
+	public boolean intersects(Rectangle2D obj) {
+		if(getShape().intersects(obj))
+			return true;
+		return false;
 	}
 }

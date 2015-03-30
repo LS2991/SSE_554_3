@@ -6,6 +6,7 @@ public class ObjectRunnable implements Runnable {
 	private GameComponent comp;
 	private ArrayList<Object> objects;
 	private Object object;
+	boolean play = true, collision = false;
 	
 	public ObjectRunnable(GameComponent comp) {
 		object = new Object(comp.getBounds());
@@ -23,28 +24,37 @@ public class ObjectRunnable implements Runnable {
 //				for
 //			}
 //		});
-		while(!(object.getXPos() + object.getXSize() >= comp.getBounds().getMaxX()) 
-				|| !(object.getXPos() - object.getXSize() <= comp.getBounds().getMinX())
-				|| !(object.getYPos() - object.getYSize() <= comp.getBounds().getMinY())) 
+		while(play = true)
 		{
-			try {
-				int prevX = (int) object.getXPos();
-				int prevY = (int) object.getYPos();
-				
-				object.move(comp.getBounds());
-				comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
-				comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
-				//comp.repaint();
-				//comp.paint(comp.getGraphics());
-				Thread.sleep(10);
-				
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			while((object.getXPos() + object.getXSize() < comp.getBounds().getMaxX()) 
+					&& (object.getXPos() - object.getXSize() > comp.getBounds().getMinX())
+					&& (object.getYPos() + object.getYSize() < comp.getBounds().getMaxY())) 
+			{
+				try {
+					int prevX = (int) object.getXPos();
+					int prevY = (int) object.getYPos();
+					
+					object.move(comp.getBounds());
+					for(int i = 0; i < comp.getProjectiles().size(); i++)
+						if(object.intersects(comp.getProjectiles().get(i).getShape()))
+							collision = true;
+					if(collision)
+						break;
+					comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
+					comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
+					//comp.repaint();
+					//comp.paint(comp.getGraphics());
+					Thread.sleep(10);
+					
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			
 			}
-		
+			comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
+			object.reset(comp.getBounds());
+			collision = false;
 		}
-		comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
-		object.reset(comp.getBounds());
 	}
 }

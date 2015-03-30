@@ -10,13 +10,13 @@ public class GameComponent extends JPanel{
 	
 	private static final int defaultWidth = 600;
 	private static final int defaultHeight = 600;
-	
 	private ArrayList<Player> players = new ArrayList();
 	private Player player;
 	private Projectile projectile;
 	private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
 	private Object object;
 	private ArrayList<Object> objects = new ArrayList<Object>();
+
 	
 	public void addPlayer(Player p) {
 		player = p;
@@ -30,15 +30,11 @@ public class GameComponent extends JPanel{
 		projectiles.add(projectile);
 	}
 	
-	public void addObject()
+	public void addObject(Object obj)
 	{
-		objects.add(new Object(getBounds()));
+		objects.add(obj);
 	}
 	
-	public void addObject(Object object)
-	{
-		objects.add(object);
-	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -50,8 +46,8 @@ public class GameComponent extends JPanel{
 			player.paintPlayer(g2);
 		
 		if(!objects.isEmpty())
-			for(Object objects : objects)
-				objects.paintObject(g2);
+			for(Object obj : objects)
+				obj.paintObject(g2);
 				
 		if(!projectiles.isEmpty()) { 
 			for(Projectile projectile : projectiles)
