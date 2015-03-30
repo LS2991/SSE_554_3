@@ -13,4 +13,12 @@ public class PlayerRunnable implements Runnable{
 		comp.paint(comp.getGraphics());
 	}
 	
+	public GameComponent getGameComponent() {
+		return comp;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
 }

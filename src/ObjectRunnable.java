@@ -61,4 +61,8 @@ public class ObjectRunnable implements Runnable {
 			collision = false;
 		}
 	}
+	
+	public Object getObject() {
+		return object;
+	}
 }
