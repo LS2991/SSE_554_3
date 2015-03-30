@@ -28,10 +28,20 @@ public class EnvironmentFrame extends JFrame {
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0), "W");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "S");
 		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0), "Space");
+		/////////////////////////////////////////////////
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "Up");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "Down");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_M, 0), "M");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "Enter");
 		
 		am.put("W", new MovementAction("W"));
 		am.put("S", new MovementAction("S"));
 		am.put("Space", new MovementAction("Space"));
+		////////////////////////////////////////////////
+		am.put("Up", new MovementAction("Up"));
+		am.put("Down", new MovementAction("Down"));
+		am.put("M", new MovementAction("M"));
+		am.put("Enter", new MovementAction("Enter"));
 		
 		
 		add(comp, BorderLayout.CENTER);
@@ -39,9 +49,14 @@ public class EnvironmentFrame extends JFrame {
 		JPanel buttonPanel = new JPanel();
 		
 		addButton(buttonPanel, "Start", new ActionListener() {
+			boolean started = false;
 			public void actionPerformed(ActionEvent e) {
-				addPlayer();
-				addObjects();
+				if (!started) {
+					addPlayer();
+					addObjects();
+					addMenu();
+					started = true;
+				}
 			}
 		});
 		
@@ -72,6 +87,12 @@ public class EnvironmentFrame extends JFrame {
 			Thread t = new Thread(r);
 			t.start();
 		}
+	}
+	
+	public void addMenu() {
+		Runnable r = new MenuRunnable(comp, comp.getMenu());
+		Thread t = new Thread(r);
+		t.start();
 	}
 	
 	public void addProjectile() {
