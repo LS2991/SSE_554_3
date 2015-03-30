@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
 import org.junit.Test;
@@ -22,8 +24,7 @@ public class GameUnitTest {
 		GameComponent comp = ((EnvironmentFrame) frame).getGameComponent();
 		
 		Player player = new Player(comp.getBounds());
-//		comp.addPlayer(player);
-//		comp.paint(comp.getGraphics());
+
 		Runnable r = new PlayerRunnable(comp, player);
 		Thread t = new Thread(r);
 		t.start();
@@ -52,6 +53,27 @@ public class GameUnitTest {
 		}
 	}
 	
-	
+	@Test
+	public void addProjectile() {
+		JFrame frame = new EnvironmentFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setFocusable(true);
+		frame.setVisible(true);
+		
+		GameComponent comp = ((EnvironmentFrame) frame).getGameComponent();
+		
+		Player player = new Player(comp.getBounds());
+
+		Runnable r = new PlayerRunnable(comp, player);
+		Thread t = new Thread(r);
+		t.start();
+		
+		Runnable r2 = new ProjectileRunnable(comp, player);
+		Thread t2 = new Thread(r2);
+		t2.start();
+		
+		ArrayList<Projectile> projectiles = ((ProjectileRunnable) r2).getProjectiles();
+		assertTrue(projectiles != null);
+	}
 
 }

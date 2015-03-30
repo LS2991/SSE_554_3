@@ -45,4 +45,8 @@ public class ProjectileRunnable implements Runnable {
 		comp.repaint((int) projectile.getXPos(), (int) projectile.getYPos(), projectile.getXSize(), projectile.getYSize());
 		projectiles.remove(projectile);
 	}
+	
+	public ArrayList<Projectile> getProjectiles() {
+		return projectiles;
+	}
 }
