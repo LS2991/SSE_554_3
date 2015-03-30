@@ -46,38 +46,25 @@ public class ObjectRunnable implements Runnable {
 					{
 						comp.getPlayer().incrementScore();
 						break;
-<<<<<<< HEAD
-					//comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
-					//comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
-					comp.repaint();
-=======
 					}
-<<<<<<< HEAD
 					//comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
 					//comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
 					comp.repaint();
-=======
-					comp.repaint(prevX, prevY, object.getXSize(), object.getYSize());
-					comp.repaint((int) object.getXPos(), (int) object.getYPos(), object.getXSize(), object.getYSize());
-					//comp.repaint();
->>>>>>> origin/master
->>>>>>> origin/master
-					//comp.paint(comp.getGraphics());
 					Thread.sleep(10);
 					
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-			
-			}
-			comp.repaint();
-			object.reset(comp.getBounds());
-			collision = false;
 		}
+		comp.repaint();
+		object.reset(comp.getBounds());
+		collision = false;
 	}
+}
 	
-	public Object getObject() {
+	public Object getObject() 
+	{
 		return object;
 	}
 }
